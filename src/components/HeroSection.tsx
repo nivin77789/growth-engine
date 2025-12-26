@@ -1,10 +1,12 @@
-import { Suspense, lazy } from 'react';
+import { useState } from 'react';
+import Spline from '@splinetool/react-spline';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
 
-const Spline = lazy(() => import('@splinetool/react-spline'));
-
 const HeroSection = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Animated Background */}
@@ -68,18 +70,35 @@ const HeroSection = () => {
               {/* Glow Effect Behind 3D */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 rounded-3xl blur-3xl opacity-50" />
               
-              <Suspense 
-                fallback={
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+              {/* Loading State */}
+              {isLoading && !hasError && (
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                  <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+                </div>
+              )}
+
+              {/* Error Fallback */}
+              {hasError ? (
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="glass rounded-3xl p-8 text-center max-w-sm">
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-primary flex items-center justify-center mx-auto mb-4">
+                      <span className="text-4xl font-display font-bold text-primary-foreground">H</span>
+                    </div>
+                    <h3 className="font-display text-xl font-bold mb-2">Hevinka</h3>
+                    <p className="text-muted-foreground text-sm">Building Smart Software</p>
                   </div>
-                }
-              >
+                </div>
+              ) : (
                 <Spline
                   scene="https://prod.spline.design/zEiCeYCDS49OEOcj/scene.splinecode"
-                  className="w-full h-full"
+                  onLoad={() => setIsLoading(false)}
+                  onError={() => {
+                    setIsLoading(false);
+                    setHasError(true);
+                  }}
+                  style={{ width: '100%', height: '100%' }}
                 />
-              </Suspense>
+              )}
             </div>
           </div>
         </div>
