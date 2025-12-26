@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
+import Hero3DScene from './Hero3DScene';
 
 const HeroSection = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Animated Background */}
@@ -62,30 +61,21 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Content - 3D Spline via iframe */}
+          {/* Right Content - 3D Scene */}
           <div className="order-1 lg:order-2 animate-fade-up delay-200">
             <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
               {/* Glow Effect Behind 3D */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 rounded-3xl blur-3xl opacity-50" />
               
-              {/* Loading State */}
-              {isLoading && (
-                <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
-                </div>
-              )}
-
-              {/* Spline Embed via iframe */}
-              <iframe
-                src="https://my.spline.design/zEiCeYCDS49OEOcj/"
-                frameBorder="0"
-                width="100%"
-                height="100%"
-                className="rounded-2xl"
-                onLoad={() => setIsLoading(false)}
-                style={{ background: 'transparent' }}
-                allow="autoplay"
-              />
+              <Suspense 
+                fallback={
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+                  </div>
+                }
+              >
+                <Hero3DScene />
+              </Suspense>
             </div>
           </div>
         </div>
