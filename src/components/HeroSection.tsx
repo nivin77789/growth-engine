@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import Spline from '@splinetool/react-spline';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
 
 const HeroSection = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
@@ -64,41 +62,30 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Content - 3D Spline */}
+          {/* Right Content - 3D Spline via iframe */}
           <div className="order-1 lg:order-2 animate-fade-up delay-200">
             <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
               {/* Glow Effect Behind 3D */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 rounded-3xl blur-3xl opacity-50" />
               
               {/* Loading State */}
-              {isLoading && !hasError && (
+              {isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center z-10">
                   <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
                 </div>
               )}
 
-              {/* Error Fallback */}
-              {hasError ? (
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="glass rounded-3xl p-8 text-center max-w-sm">
-                    <div className="w-20 h-20 rounded-2xl bg-gradient-primary flex items-center justify-center mx-auto mb-4">
-                      <span className="text-4xl font-display font-bold text-primary-foreground">H</span>
-                    </div>
-                    <h3 className="font-display text-xl font-bold mb-2">Hevinka</h3>
-                    <p className="text-muted-foreground text-sm">Building Smart Software</p>
-                  </div>
-                </div>
-              ) : (
-                <Spline
-                  scene="https://prod.spline.design/zEiCeYCDS49OEOcj/scene.splinecode"
-                  onLoad={() => setIsLoading(false)}
-                  onError={() => {
-                    setIsLoading(false);
-                    setHasError(true);
-                  }}
-                  style={{ width: '100%', height: '100%' }}
-                />
-              )}
+              {/* Spline Embed via iframe */}
+              <iframe
+                src="https://my.spline.design/zEiCeYCDS49OEOcj/"
+                frameBorder="0"
+                width="100%"
+                height="100%"
+                className="rounded-2xl"
+                onLoad={() => setIsLoading(false)}
+                style={{ background: 'transparent' }}
+                allow="autoplay"
+              />
             </div>
           </div>
         </div>
