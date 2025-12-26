@@ -1,5 +1,8 @@
+import { Suspense, lazy } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
+
+const Spline = lazy(() => import('@splinetool/react-spline'));
 
 const HeroSection = () => {
   return (
@@ -25,53 +28,77 @@ const HeroSection = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 animate-fade-up">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-sm text-muted-foreground">IT Solutions Company</span>
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
+          {/* Left Content */}
+          <div className="text-center lg:text-left order-2 lg:order-1">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 animate-fade-up">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="text-sm text-muted-foreground">IT Solutions Company</span>
+            </div>
+
+            {/* Main Headline */}
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight animate-fade-up delay-100">
+              Smart Software Solutions for{' '}
+              <span className="text-gradient">Growing Businesses</span>
+            </h1>
+
+            {/* Sub-headline */}
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed animate-fade-up delay-200">
+              We build powerful websites, scalable ERP systems, rental software for heavy machinery, 
+              and intelligent IoT solutions—designed to simplify operations and boost growth.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 animate-fade-up delay-300">
+              <Button variant="hero" size="xl" className="group">
+                Get a Free Consultation
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button variant="heroOutline" size="xl" className="group">
+                <Play className="mr-2 w-5 h-5" />
+                Request a Demo
+              </Button>
+            </div>
           </div>
 
-          {/* Main Headline */}
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight animate-fade-up delay-100">
-            Smart Software Solutions for{' '}
-            <span className="text-gradient">Growing Businesses</span>
-          </h1>
-
-          {/* Sub-headline */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed animate-fade-up delay-200">
-            We build powerful websites, scalable ERP systems, rental software for heavy machinery, 
-            and intelligent IoT solutions—designed to simplify operations and boost growth.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up delay-300">
-            <Button variant="hero" size="xl" className="group">
-              Get a Free Consultation
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="heroOutline" size="xl" className="group">
-              <Play className="mr-2 w-5 h-5" />
-              Request a Demo
-            </Button>
+          {/* Right Content - 3D Spline */}
+          <div className="order-1 lg:order-2 animate-fade-up delay-200">
+            <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
+              {/* Glow Effect Behind 3D */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 rounded-3xl blur-3xl opacity-50" />
+              
+              <Suspense 
+                fallback={
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+                  </div>
+                }
+              >
+                <Spline
+                  scene="https://prod.spline.design/zEiCeYCDS49OEOcj/scene.splinecode"
+                  className="w-full h-full"
+                />
+              </Suspense>
+            </div>
           </div>
+        </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 animate-fade-up delay-400">
-            {[
-              { value: '150+', label: 'Projects Delivered' },
-              { value: '50+', label: 'Happy Clients' },
-              { value: '5+', label: 'Years Experience' },
-              { value: '24/7', label: 'Support Available' },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="font-display text-3xl md:text-4xl font-bold text-gradient mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 lg:mt-20 animate-fade-up delay-400">
+          {[
+            { value: '150+', label: 'Projects Delivered' },
+            { value: '50+', label: 'Happy Clients' },
+            { value: '5+', label: 'Years Experience' },
+            { value: '24/7', label: 'Support Available' },
+          ].map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="font-display text-3xl md:text-4xl font-bold text-gradient mb-2">
+                {stat.value}
               </div>
-            ))}
-          </div>
+              <div className="text-sm text-muted-foreground">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </div>
 
