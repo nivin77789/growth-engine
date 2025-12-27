@@ -20,7 +20,7 @@ const Footer = () => {
     <footer className="py-16 border-t border-border/50 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
@@ -32,12 +32,12 @@ const Footer = () => {
               <span className="font-display font-bold text-xl">Hevinka</span>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
-              Building smart software for modern businesses. We help companies digitize 
+              Building smart software for modern businesses. We help companies digitize
               operations and scale with innovative technology solutions.
             </p>
             <div className="flex flex-wrap gap-3">
               {services.map((service, index) => (
-                <div 
+                <div
                   key={index}
                   className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 text-sm text-muted-foreground"
                 >
@@ -54,7 +54,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a 
+                  <a
                     href={link.href}
                     className="text-muted-foreground hover:text-foreground transition-colors"
                   >
@@ -69,8 +69,8 @@ const Footer = () => {
           <div>
             <h4 className="font-display font-bold mb-4">Contact</h4>
             <ul className="space-y-3 text-muted-foreground">
-              <li>contact@hevinka.com</li>
-              <li>+91-XXXXXXXXXX</li>
+              <li>adithyanunni258@gmail.com</li>
+              <li>9061399830</li>
               <li>India</li>
             </ul>
           </div>

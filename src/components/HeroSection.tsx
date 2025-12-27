@@ -9,14 +9,14 @@ const HeroSection = () => {
       {/* Animated Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
-        
+
         {/* Floating Orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-glow" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/15 rounded-full blur-3xl animate-pulse-glow delay-1000" />
         <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-primary/10 rounded-full blur-2xl animate-float" />
-        
+
         {/* Grid Pattern */}
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
@@ -44,7 +44,7 @@ const HeroSection = () => {
 
             {/* Sub-headline */}
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed animate-fade-up delay-200">
-              We build powerful websites, scalable ERP systems, rental software for heavy machinery, 
+              We build powerful websites, scalable ERP systems, rental software for heavy machinery,
               and intelligent IoT solutions—designed to simplify operations and boost growth.
             </p>
 
@@ -61,21 +61,33 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Content - 3D Scene */}
+          {/* Right Content - 3D/Image */}
           <div className="order-1 lg:order-2 animate-fade-up delay-200">
-            <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
-              {/* Glow Effect Behind 3D */}
+            <div className="relative w-full h-[300px] md:h-[500px] lg:h-[600px]">
+              {/* Glow Effect Behind Content */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 rounded-3xl blur-3xl opacity-50" />
-              
-              <Suspense 
-                fallback={
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
-                  </div>
-                }
-              >
-                <Hero3DScene />
-              </Suspense>
+
+              {/* Mobile Image */}
+              <div className="lg:hidden w-full h-full flex items-center justify-center">
+                <img
+                  src="/hero.png"
+                  alt="Hevinka IT Solutions"
+                  className="w-[85%] h-auto max-h-full object-contain filter drop-shadow-2xl animate-float"
+                />
+              </div>
+
+              {/* Desktop 3D Scene */}
+              <div className="hidden lg:block w-full h-full">
+                <Suspense
+                  fallback={
+                    <div className="w-full h-full flex items-center justify-center">
+                      <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+                    </div>
+                  }
+                >
+                  <Hero3DScene />
+                </Suspense>
+              </div>
             </div>
           </div>
         </div>

@@ -24,14 +24,14 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'contact@hevinka.com',
-      href: 'mailto:contact@hevinka.com'
+      value: 'adithyanunni258@gmail.com',
+      href: 'mailto:adithyanunni258@gmail.com'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+91-XXXXXXXXXX',
-      href: 'tel:+91XXXXXXXXXX'
+      value: '9061399830',
+      href: 'tel:9061399830'
     },
     {
       icon: MapPin,
@@ -45,7 +45,7 @@ const ContactSection = () => {
     <section id="contact" className="py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-t from-secondary/10 to-transparent" />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-primary font-semibold text-sm uppercase tracking-wider">Contact</span>
@@ -125,7 +125,7 @@ const ContactSection = () => {
                   </div>
                 </a>
               ))}
-              
+
               {/* Additional Info Card */}
               <div className="glass rounded-2xl p-6">
                 <h4 className="font-display font-bold text-lg mb-3">Business Hours</h4>
